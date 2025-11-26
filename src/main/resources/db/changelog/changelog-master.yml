@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: release/init-ddl.sql
+      relativeToChangeLogFile: true
+  - include:
+      file: release/init-dml.sql
+      relativeToChangeLogFile: true

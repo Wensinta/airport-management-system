@@ -1,0 +1,36 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: airportweb
+  datasource:
+    url: jdbc:postgresql://localhost:5432/airport_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      jdbc-url: jdbc:postgresql://localhost:5432/airport_db
+      driver-class-name: "org.postgresql.Driver"
+      username: postgres
+      password: postgres
+      connection-timeout: 30000
+      #maximum-pool-size: 15
+      #minimum-idle: 10
+      initialization-fail-timeout: 1
+      leak-detection-threshold: 0
+      pool-name: "[HikariPool-airport-web-pool]"
+      register-mbeans: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    show-sql: true
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/changelog-master.yml
+
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
