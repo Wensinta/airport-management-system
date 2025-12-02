@@ -1,4 +1,4 @@
-package rut.miit.airportweb.dto;
+package rut.miit.airportweb.config.security;
 
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;

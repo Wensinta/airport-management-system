@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 /**
- * {@link rut.miit.airportweb.dto.CustomUserDetails} это реализация {@link UserDetails}
+ * {@link CustomUserDetails} это реализация {@link UserDetails}
  * для того, чтобы в этом сервисе достать из базы пользователя, конвертнуть его в UserDetails и сделать аутентификацию
  * с авторизацией
  * Т.е. в этом коде должна быть логика получения пользователя по какому-либо параметру из базы и перевод в нужный класс
