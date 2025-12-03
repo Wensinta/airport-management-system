@@ -3,12 +3,14 @@ package rut.miit.airportweb.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Builder
+@AllArgsConstructor
 public class TicketDto {
 
     private Integer id;

@@ -14,6 +14,7 @@ public class UserMapper {
                 .passwordHash(user.getPassword())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
+                .role(user.getRole())
                 .createdAt(user.getCreatedAt())
                 .passengerId(String.valueOf(user.getPassenger().getId()))
                 .build();

@@ -3,9 +3,11 @@ package rut.miit.airportweb.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 @Builder
+@AllArgsConstructor
 public class UserRegistrationDto {
 
     @NotBlank(message = "Username is required")

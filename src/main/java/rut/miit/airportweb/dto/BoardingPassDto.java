@@ -1,6 +1,7 @@
 package rut.miit.airportweb.dto;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
 public class BoardingPassDto {
 
     private Integer id;
