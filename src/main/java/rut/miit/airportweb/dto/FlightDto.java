@@ -4,9 +4,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 @Builder
 public class FlightDto {
 
@@ -35,12 +39,15 @@ public class FlightDto {
 
     private String status;
 
+    private UserDto createdBy;
+
     // Constructors
     public FlightDto() {}
 
     public FlightDto(Integer id, String flightNumber, String departureCity, String arrivalCity,
                      LocalDateTime departureTime, LocalDateTime arrivalTime,
-                     Integer totalSeats, Integer availableSeats, String status) {
+                     Integer totalSeats, Integer availableSeats, String status,
+                     UserDto createdBy) {
         this.id = id;
         this.flightNumber = flightNumber;
         this.departureCity = departureCity;
@@ -50,34 +57,7 @@ public class FlightDto {
         this.totalSeats = totalSeats;
         this.availableSeats = availableSeats;
         this.status = status;
+        this.createdBy = createdBy;
     }
-
-    // Getters and Setters
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
-
-    public String getFlightNumber() { return flightNumber; }
-    public void setFlightNumber(String flightNumber) { this.flightNumber = flightNumber; }
-
-    public String getDepartureCity() { return departureCity; }
-    public void setDepartureCity(String departureCity) { this.departureCity = departureCity; }
-
-    public String getArrivalCity() { return arrivalCity; }
-    public void setArrivalCity(String arrivalCity) { this.arrivalCity = arrivalCity; }
-
-    public LocalDateTime getDepartureTime() { return departureTime; }
-    public void setDepartureTime(LocalDateTime departureTime) { this.departureTime = departureTime; }
-
-    public LocalDateTime getArrivalTime() { return arrivalTime; }
-    public void setArrivalTime(LocalDateTime arrivalTime) { this.arrivalTime = arrivalTime; }
-
-    public Integer getTotalSeats() { return totalSeats; }
-    public void setTotalSeats(Integer totalSeats) { this.totalSeats = totalSeats; }
-
-    public Integer getAvailableSeats() { return availableSeats; }
-    public void setAvailableSeats(Integer availableSeats) { this.availableSeats = availableSeats; }
-
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
 
 }

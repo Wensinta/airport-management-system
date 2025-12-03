@@ -1,13 +1,14 @@
 package rut.miit.airportweb.mapper;
 
+import lombok.experimental.UtilityClass;
 import org.springframework.stereotype.Component;
 import rut.miit.airportweb.dao.entity.UserEntity;
 import rut.miit.airportweb.dto.UserDto;
 
-@Component
+@UtilityClass
 public class UserMapper {
 
-    public UserDto map(UserEntity user) {
+    public static UserDto map(UserEntity user) {
         return UserDto.builder()
                 .id(user.getId())
                 .username(user.getUsername())
