@@ -2,6 +2,7 @@ package rut.miit.airportweb.dao.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -26,14 +27,14 @@ public class UserEntity {
         this.createdAt = LocalDateTime.now();
     }
 
-    public UserEntity(String username, String password, Role role, String firstName, String lastName, PassengerEntity passenger) {
+    @Builder
+    public UserEntity(String username, String password, Role role, String firstName, String lastName) {
         this.username = username;
         this.password = password;
         this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
         this.createdAt = LocalDateTime.now();
-        this.passenger = passenger;
     }
 
     // Getters and Setters

@@ -9,6 +9,7 @@ import rut.miit.airportweb.dao.entity.UserEntity;
 import rut.miit.airportweb.dao.repository.UserRepository;
 import rut.miit.airportweb.dto.UserDto;
 import rut.miit.airportweb.dto.UserRegistrationDto;
+import rut.miit.airportweb.exception.EntityAlreadyExistsException;
 import rut.miit.airportweb.exception.EntityNotFoundException;
 import rut.miit.airportweb.mapper.UserMapper;
 import rut.miit.airportweb.service.UserService;
@@ -27,9 +28,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserDto registerUser(UserRegistrationDto registrationDto) {
-        return null;
-        // ПОКА ЧТО БЕЗ РЕАЛИЗАЦИИ
+    public UserDto registerUser(UserRegistrationDto dto) {
+        log.info("Registering user {}", dto.getEmail());
+        if (this.userRepository.findByUsername(dto.getUsername()).isPresent()) {
+            log.info("User already exists");
+            throw new EntityAlreadyExistsException(String.format("User with username %s already exists", dto.getUsername()));
+        }
+
+        UserEntity entity = UserMapper.map(dto);
+        entity.setPassword(this.passwordEncoder.encode(entity.getPassword()));
+
+        UserEntity savedUser = this.userRepository.save(entity);
+        log.info("User registered successfully with ID: {}", savedUser.getId());
+
+        return UserMapper.map(savedUser);
     }
 
     @Override
@@ -59,13 +71,19 @@ public class UserServiceImpl implements UserService {
     // Пока что без реализации
     @Override
     public UserDto authenticate(String username, String password) throws EntityNotFoundException {
-        return null;
+        log.info("Authenticating user {}", username);
+
+        return this.userRepository.findByUsername(username)
+                .filter(userEntity -> this.passwordEncoder.matches(password, userEntity.getPassword()))
+                .map(UserMapper::map)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("User with username %s not found", username)));
     }
 
 
     // Пока без реализации
     @Override
     public UserDto updateUser(String username, UserDto userDto) {
+        log.info("Метод без реализации");
         return null;
     }
 

@@ -26,9 +26,7 @@ public class UserRegistrationDto {
     @Size(max = 50, message = "Last name must not exceed 50 characters")
     private String lastName;
 
-    @NotBlank(message = "Passport number is required")
-    private String passportNumber;
-
+    @NotBlank(message = "Phone number cannot be blank")
     private String phone;
 
     @Email(message = "Email should be valid")
@@ -51,9 +49,6 @@ public class UserRegistrationDto {
 
     public String getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
-
-    public String getPassportNumber() { return passportNumber; }
-    public void setPassportNumber(String passportNumber) { this.passportNumber = passportNumber; }
 
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
