@@ -18,8 +18,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UserDto {
 
-    private Integer id;
-
     @Size(max = 50, message = "Username cannot be longer than 50 symbols")
     @NotBlank(message = "Username cannot be blank")
     private String username;
@@ -41,7 +39,8 @@ public class UserDto {
     @NotNull(message = "Created at date cannot be null")
     private LocalDateTime createdAt;
 
-    @NotNull(message = "Passenger id cannot null")
-    private String passengerId;
+    @NotNull(message = "Passport number cannot be null")
+    @NotBlank(message = "Passport number cannot be blank")
+    private String passportNumber;
 
 }

@@ -2,6 +2,7 @@ package rut.miit.airportweb.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,13 +27,17 @@ public class UserRegistrationDto {
     @Size(max = 50, message = "Last name must not exceed 50 characters")
     private String lastName;
 
-    @NotBlank(message = "Phone number cannot be blank")
-    private String phone;
 
     @Email(message = "Email should be valid")
     private String email;
 
+    @NotNull(message = "Role cannot be null")
+    @NotBlank(message = "Role cannot be blank")
     private String role;
+
+    @NotBlank(message = "Passport number cannot be blank")
+    @NotNull(message = "Passport number cannot be null")
+    private String passportNumber;
 
     // Constructors
     public UserRegistrationDto() {}
@@ -50,13 +55,17 @@ public class UserRegistrationDto {
     public String getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
 
-    public String getPhone() { return phone; }
-    public void setPhone(String phone) { this.phone = phone; }
-
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
 
+    public String getPassportNumber() {
+        return passportNumber;
+    }
+
+    public void setPassportNumber(String passportNumber) {
+        this.passportNumber = passportNumber;
+    }
 }

@@ -5,7 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import rut.miit.airportweb.dao.entity.PassengerEntity;
 import rut.miit.airportweb.dao.entity.UserEntity;
+import rut.miit.airportweb.dao.repository.PassengerRepository;
 import rut.miit.airportweb.dao.repository.UserRepository;
 import rut.miit.airportweb.dto.UserDto;
 import rut.miit.airportweb.dto.UserRegistrationDto;
@@ -24,6 +26,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final PassengerRepository passengerRepository;
 
 
     @Override
@@ -37,6 +40,13 @@ public class UserServiceImpl implements UserService {
 
         UserEntity entity = UserMapper.map(dto);
         entity.setPassword(this.passwordEncoder.encode(entity.getPassword()));
+
+        PassengerEntity passenger = this.passengerRepository.findByPassportNumber(dto.getPassportNumber())
+                .orElseThrow(
+                        () -> new EntityNotFoundException(String.format("Passenger with passport number %s not found", dto.getPassportNumber()))
+                );
+
+        entity.setPassenger(passenger);
 
         UserEntity savedUser = this.userRepository.save(entity);
         log.info("User registered successfully with ID: {}", savedUser.getId());

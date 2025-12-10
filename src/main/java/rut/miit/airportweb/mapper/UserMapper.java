@@ -10,14 +10,13 @@ public class UserMapper {
 
     public static UserDto map(UserEntity user) {
         return UserDto.builder()
-                .id(user.getId())
                 .username(user.getUsername())
                 .passwordHash(user.getPassword())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .role(user.getRole())
                 .createdAt(user.getCreatedAt())
-                .passengerId(String.valueOf(user.getPassenger().getId()))
+                .passportNumber(user.getPassenger().getPassportNumber())
                 .build();
     }
 
