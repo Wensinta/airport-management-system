@@ -24,7 +24,7 @@ public interface FlightRepository extends JpaRepository<FlightEntity, Integer> {
 
     // Добавляем полезные методы
     @Query("SELECT f FROM flight_entity f WHERE f.status = :status")
-    List<FlightEntity> findByStatus(String status);
+    List<FlightEntity> findByStatus(FlightEntity.FlightStatus status);
 
     @Query("SELECT f FROM flight_entity f WHERE f.availableSeats > 0")
     List<FlightEntity> findAvailableFlights();

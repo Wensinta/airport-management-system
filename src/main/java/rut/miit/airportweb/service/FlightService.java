@@ -61,6 +61,7 @@ public interface FlightService extends CommonService {
      */
     FlightDto updateAvailableSeats(String flightNumber, int seatsToBook);
 
-
+    List<FlightDto> findFlightsByStatus(String status);
+    List<FlightDto> findAvailableFlights();
 
 }

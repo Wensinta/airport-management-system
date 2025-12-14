@@ -11,6 +11,10 @@ import rut.miit.airportweb.dto.BoardingPassDto;
 public class BoardingPassMapper {
 
     public static BoardingPassDto map(BoardingPassEntity boardingPass) {
+        if (boardingPass == null) {
+            return null;
+        }
+
         BoardingPassDto.BoardingPassDtoBuilder builder = BoardingPassDto.builder()
                 .id(boardingPass.getId())
                 .checkInTime(boardingPass.getCheckInTime())
@@ -35,6 +39,10 @@ public class BoardingPassMapper {
 
     public static BoardingPassEntity map(BoardingPassCreateDto dto, TicketEntity ticket,
                                          UserEntity borderGuard, UserEntity customsOfficer) {
+        if (dto == null) {
+            return null;
+        }
+
         return BoardingPassEntity.builder()
                 .ticket(ticket)
                 .verifiedByBorderGuard(borderGuard)
@@ -42,8 +50,11 @@ public class BoardingPassMapper {
                 .build();
     }
 
-    // Метод для обновления существующего BoardingPassEntity
     public static void updateEntity(BoardingPassEntity entity, BoardingPassDto dto) {
+        if (dto == null || entity == null) {
+            return;
+        }
+
         if (dto.getPassportVerified() != null) {
             entity.setPassportVerified(dto.getPassportVerified());
         }

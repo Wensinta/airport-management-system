@@ -11,14 +11,14 @@ public interface BoardingPassService {
     /**
      * Получить посадочный талон по ID
      * @param id идентификатор посадочного талона
-     * @return Optional с посадочным талоном
+     * @return посадочный талон
      */
     BoardingPassDto getBoardingPassById(Integer id);
 
     /**
      * Получить посадочный талон по номеру билета
      * @param ticketNumber номер билета
-     * @return Optional с посадочным талоном
+     * @return посадочный талон
      */
     BoardingPassDto getBoardingPassByTicketNumber(String ticketNumber);
 
@@ -28,14 +28,6 @@ public interface BoardingPassService {
      * @return созданный посадочный талон
      */
     BoardingPassDto createBoardingPass(BoardingPassCreateDto boardingPassCreateDto);
-
-//    /**
-//     * Обновить посадочный талон
-//     * @param id идентификатор посадочного талона
-//     * @param boardingPassUpdateDto DTO обновления посадочного талона
-//     * @return обновленный посадочный талон
-//     */
-//    BoardingPassDto updateBoardingPass(Integer id, BoardingPassUpdateDto boardingPassUpdateDto);
 
     /**
      * Удалить посадочный талон
@@ -51,8 +43,8 @@ public interface BoardingPassService {
      * @return обновленный посадочный талон
      */
     BoardingPassDto updatePassportVerification(Integer boardingPassId,
-                                                         boolean passportVerified,
-                                                         Integer verifiedByUserId);
+                                               boolean passportVerified,
+                                               Integer verifiedByUserId);
 
     /**
      * Обновить статус проверки багажа
@@ -62,8 +54,8 @@ public interface BoardingPassService {
      * @return обновленный посадочный талон
      */
     BoardingPassDto updateLuggageVerification(Integer boardingPassId,
-                                                        boolean luggageVerified,
-                                                        Integer verifiedByUserId);
+                                              boolean luggageVerified,
+                                              Integer verifiedByUserId);
 
     /**
      * Обновить статус посадки

@@ -28,7 +28,12 @@ public class FlightEntity {
     private List<TicketEntity> tickets = new ArrayList<>();
 
     public enum FlightStatus {
-        SCHEDULED, BOARDING, DEPARTED, ARRIVED
+        SCHEDULED, BOARDING, DEPARTED, ARRIVED;
+
+        @Override
+        public String toString() {
+            return super.toString();
+        }
     }
 
     // Constructors, Getters and Setters

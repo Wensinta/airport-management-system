@@ -11,12 +11,10 @@ import rut.miit.airportweb.dao.repository.FlightRepository;
 import rut.miit.airportweb.dao.repository.UserRepository;
 import rut.miit.airportweb.dto.FlightCreateDto;
 import rut.miit.airportweb.dto.FlightDto;
-import rut.miit.airportweb.exception.EntityAlreadyExistsException;
 import rut.miit.airportweb.exception.EntityNotFoundException;
 import rut.miit.airportweb.exception.NotPermittedOperation;
 import rut.miit.airportweb.mapper.FlightMapper;
 import rut.miit.airportweb.service.FlightService;
-// Добавляем импорт для исключения
 import rut.miit.airportweb.exception.EntityAlreadyExistsException;
 
 import java.time.LocalDateTime;
@@ -130,6 +128,28 @@ public class FlightServiceImpl implements FlightService {
                 .toList();
     }
 
+    // Добавляем новые полезные методы
+    @Override
+    @Transactional(readOnly = true)
+    public List<FlightDto> findAvailableFlights() {
+        return this.flightRepository.findAvailableFlights()
+                .stream()
+                .map(FlightMapper::map)
+                .toList();
+    }
 
-
+    @Override
+    @Transactional(readOnly = true)
+    public List<FlightDto> findFlightsByStatus(String status) {
+        try {
+            FlightEntity.FlightStatus flightStatus = FlightEntity.FlightStatus.valueOf(status.toUpperCase());
+            return this.flightRepository.findByStatus(flightStatus)
+                    .stream()
+                    .map(FlightMapper::map)
+                    .toList();
+        } catch (IllegalArgumentException ex) {
+            log.warn(ex.getMessage());
+            throw new IllegalArgumentException("Invalid flight status");
+        }
+    }
 }
